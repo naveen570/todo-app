@@ -18,6 +18,7 @@
     --Dark-Grayish-Blue: hsl(234, 11%, 52%);
     --Very-Dark-Grayish-Blue: hsl(233, 14%, 35%);
     --Very-Dark-Grayish-Blue: hsl(237, 14%, 26%);
+    --purple:hsl(288, 72%, 69%);
 }
 img{
     max-width: 100%;
@@ -37,8 +38,8 @@ button,a{
     text-decoration: none;
 }
 .todo{
-    width: 85%;
-    max-width: 30rem;
+    width: 95%;
+    max-width: 40rem;
     margin: 0 auto;
     min-height: 80vh;
     
@@ -57,9 +58,10 @@ button,a{
     letter-spacing: 0.5rem;
     text-transform: uppercase;
 }
-.header img{
+.header .toggle{
     height: 1.5rem;
     width: 1.5rem;
+    cursor: pointer;
 }
 form{
     margin-bottom: 1rem;    
@@ -75,21 +77,25 @@ form{
       
 }
 .circle{
-    height: 1.1rem;
-    width:1.1rem;
+    height: 1.7rem;
+    width:1.7rem;
     border-radius: 50%;
-    border:0.2px solid var(--Very-Light-Grayish-Blue);
+    border:0.2px solid var(--Light-Grayish-Blue);
     cursor: pointer;
 }
 .todo-add{    
-    margin-left:1rem;
-    
-    background-color: white;
+    margin-left:1rem;    
+    background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
+    color: white;  
+}
+.todo-add:hover{
+    --Bright-Blue: hsl(220, 98%, 55%);
+    --purple:hsl(288, 72%, 55%)
 }
 .todo-input{
     flex:1;
     border-radius: 0.3rem;
-    font-size: 1.125rem;
+    font-size: 1.125rem;    
     padding: 0.8rem;
     font-family: 'Josefin Sans', sans-serif; 
     /* background-color: var(--Very-Dark-Blue); */
@@ -101,6 +107,12 @@ form{
     background-color: white;    
     border-radius: 0.3rem;
     margin-bottom: 1.5rem;
+}
+.todo-list .msg{
+    padding:2rem;
+    font-size: 1.125rem;
+    color: var(--Very-Dark-Grayish-Blue);
+    text-align: center;
 }
 .todo-item {
     display: flex;
@@ -124,14 +136,37 @@ form{
 }
 .check{
     opacity: 0;
+    background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
 }
-.todo-item:hover .delete,.todo-item:hover .check{
+.check:hover{
     opacity: 1;
+}
+.check img{
+    /* opacity: 1; */
+    height: 1.5rem;
+    width: 1.5rem;   
+}
+.todo-item:hover .delete{
+    opacity: 1;
+}
+.completed .todo-item-content{
+    color:var(--Light-Grayish-Blue);
+    text-decoration: line-through;
+}
+.completed .check{
+    opacity: 1;
+}
+.remove{
+    display: none;
 }
 .filter{   
     text-align: center;
     padding: 1rem 0;
-    background-color: white;
+    background-color: white;    
+    border-radius: 00.3rem;
+}
+.todo-add,.todo-list,.filter{
+    box-shadow: 0 0 0.3rem rgba(0,0,0,0.7);
 }
 .btn-filter{
     text-transform: capitalize;  
