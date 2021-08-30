@@ -12,23 +12,32 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; position: absolute; bottom: 15px; left:50%; transform: translateX(-50%);}
+    .attribution { font-size: 11px; text-align: center; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
   <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-  <main class="container">
+  <main class="todo">
     <div class="header">
       <h1>Todo</h1>
         <img src="./images/icon-moon.svg" alt="" class="toggle">
     </div>
       <form >
-        <button class="todo-add shape" type="submit"></button>
+        <button class="todo-add circle" type="submit"></button>
         <input type="text" class="todo-input" placeholder="Create a new todo">
       </form>
       <ul class="todo-list">
-
+          <div class="todo-item">
+            <img src="" class="check circle" alt="">
+            <li>veg</li>
+            <img src="./images/icon-cross.svg" class="delete" alt="">
+          </div>
+          <div class="todo-item">
+            <img src="" class="check circle" alt="">
+            <li>veg</li>
+            <img src="./images/icon-cross.svg" class="delete" alt="">
+          </div>         
       </ul>
       <div class="filter">
         <button class="btn-filter">all</button>
