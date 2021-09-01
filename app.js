@@ -5,45 +5,64 @@ const toggle=document.querySelector(".toggle")
 const form=document.querySelector(".todo-enter")
 const filter=document.querySelector(".filter")
 // const close=document.querySelector(".close")
-
-toggle.addEventListener("click",e=>{
-    const check=document.querySelectorAll('.check')    
+const imgChange=window.matchMedia("(min-width:376px)")
+toggle.addEventListener("click",e=>{ 
+    const checks=document.querySelectorAll('.check')    
     if(toggle.dataset["status"]=="light"){
         toggle.dataset["status"]="dark"
-        document.body.style.backgroundImage='url("./images/bg-desktop-dark.jpg")'
+        // document.body.style.backgroundImage='url("./images/bg-mobile-dark.jpg")'
+        handleImgChange(imgChange)
         document.body.style.backgroundColor="var(--Very-Dark-Blue)"
         toggle.setAttribute("src","./images/icon-sun.svg")
         form.style.backgroundColor="var(--Very-Dark-Desaturated-Blue)"
-        todoInput.style.color="var(--Very-Light-Gray)"
-        todoList.classList.add("dark")
-        todoList.classList.remove("light")
-        check.forEach(c=>{
-           c.classList.add("dark")
-           c.classList.remove("light")  
-        })
-        filter.classList.add("dark")
-        filter.classList.remove("light")
+        todoInput.style.color="var(--Very-Light-Gray)"      
+        classToggle(todoList,"dark","light")
+        checks.forEach(check=>{         
+           classToggle(check,"dark","light")
+        })        
+        classToggle(filter,"dark","light")
              
     }
     else if(toggle.dataset["status"]=="dark"){
-        const check=document.querySelectorAll('.check')  
+        const checks=document.querySelectorAll('.check')  
         toggle.dataset["status"]="light"
-        document.body.style.backgroundImage='url("./images/bg-desktop-light.jpg")'
-        document.body.style.backgroundColor="var(--Very-Light-Gray)"
+        // document.body.style.backgroundImage='url("./images/bg-mobile-light.jpg")'
+        handleImgChange(imgChange)
+        document.body.style.backgroundColor="var(--Light-Grayish-Blue-hover)"
         toggle.setAttribute("src","./images/icon-moon.svg")
         form.style.backgroundColor="var(--Very-Light-Gray)"
-        todoInput.style.color="var(--Very-Dark-Desaturated-Blue)"
-        todoList.classList.add("light")
-        todoList.classList.remove("darkx")
-        check.forEach(c=>{
-            c.classList.remove("dark")
-            c.classList.add("light")  
-         })
-        filter.classList.remove("dark")
-        filter.classList.add("light")
+        todoInput.style.color="var(--Very-Dark-Desaturated-Blue)"   
+        classToggle(todoList,"light","dark")
+        checks.forEach(check=>{           
+            classToggle(check,"light","dark")
+         })      
+        classToggle(filter,"light","dark")
     }
     
 })
+imgChange.addListener(handleImgChange)
+function handleImgChange(e){   
+    if(e.matches) {
+        if(toggle.dataset["status"]=="light"){
+            document.body.style.backgroundImage='url("./images/bg-desktop-light.jpg")'
+            console.log("light-desktop")
+        }
+        else if(toggle.dataset["status"]=="dark"){
+            document.body.style.backgroundImage='url("./images/bg-desktop-dark.jpg")'
+            console.log("dark-desktop")
+        }
+    }
+    else {
+        if(toggle.dataset["status"]=="light"){
+            document.body.style.backgroundImage='url("./images/bg-mobile-light.jpg")'
+            console.log("light-mobile")
+        }
+        else if(toggle.dataset["status"]=="dark"){
+            document.body.style.backgroundImage='url("./images/bg-mobile-dark.jpg")'
+            console.log("dark-mobile")
+        }
+    }
+}
 todoAdd.addEventListener('click',e=>{    
    e.preventDefault()
    if(!todoInput.value) return    
@@ -78,4 +97,8 @@ function creatingTodoItem(todoList,toggleStatus){
     todoItem.appendChild(close)       
     todoList.appendChild(todoItem)
     todoInput.value=""
+}
+function classToggle(target,newClass,oldClass){
+    target.classList.add(newClass)
+    target.classList.remove(oldClass)
 }
