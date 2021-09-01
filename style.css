@@ -199,7 +199,9 @@ div[data-status=completed] .check-icon{
     background-color: var(--Very-Light-Gray);
     color: var(--Very-Dark-Grayish-Blue);
 }
-
+.chosen{
+    color:var(--Bright-Blue)
+}
 @media(min-width:376px){
 body{
     background-image: url("./images/bg-desktop-light.jpg");

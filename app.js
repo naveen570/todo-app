@@ -23,6 +23,7 @@ toggle.addEventListener("click",e=>{
            classToggle(check,"dark","light")
         })        
         classToggle(filter,"dark","light")
+        document.querySelector(".btn-filter.chosen").style.color="var(--Bright-Blue)"
              
     }
     else if(toggle.dataset["status"]=="dark"){
@@ -94,19 +95,34 @@ todoList.addEventListener('click',e=>{
 
 
 //filtering
-filter.addEventListener("click",e=>{
+filter.addEventListener("click",e=>{   
     if(!e.target.closest(".btn-filter")) return
     if(todoList.childElementCount==0) return    
-    if(e.target==filter.querySelector(".btn-filter.active")){
-        console.log("active")
+    const items=todoList.querySelectorAll(".todo-item")  
+    if(e.target==filter.querySelector(".btn-filter.active")){  
+        activeFilter(e.target)        
+        displayAllItems(items)   
+        items.forEach((item,i)=>{
+            if(item.dataset.status!="active"){
+                item.style.display="none"
+            }
+        })      
     }
-    if(e.target==filter.querySelector(".btn-filter.all")){
-        console.log("all")
+    if(e.target==filter.querySelector(".btn-filter.all")){ 
+        activeFilter(e.target)         
+        displayAllItems(items)
     }
-    if(e.target==filter.querySelector(".btn-filter.completed")){
-        console.log("completed")
+    if(e.target==filter.querySelector(".btn-filter.completed")){     
+        activeFilter(e.target)
+        displayAllItems(items)
+        items.forEach((item,i)=>{
+            if(item.dataset.status!="completed"){
+                item.style.display="none"
+            }
+        })
 }
 })
+
 
 function creatingTodoItem(todoList,toggleStatus){
     const itemContent=document.createTextNode(todoInput.value)
@@ -128,9 +144,17 @@ function creatingTodoItem(todoList,toggleStatus){
     todoList.appendChild(todoItem)
     todoInput.value=""
 }
-
-
 function classToggle(target,newClass,oldClass){
     target.classList.add(newClass)
     target.classList.remove(oldClass)
+}
+function activeFilter(target){    
+    const currentlyActive=filter.querySelector(".chosen")      
+    currentlyActive.classList.remove("chosen")
+    target.classList.add("chosen")
+}
+function displayAllItems(items){
+    items.forEach((item,i)=>{            
+        item.style.display="flex"         
+})
 }
