@@ -4,8 +4,10 @@ const todoList=document.querySelector(".todo-list")
 const toggle=document.querySelector(".toggle")
 const form=document.querySelector(".todo-enter")
 const filter=document.querySelector(".filter")
-// const close=document.querySelector(".close")
 const imgChange=window.matchMedia("(min-width:376px)")
+
+
+//light to dark them, vice versa
 toggle.addEventListener("click",e=>{ 
     const checks=document.querySelectorAll('.check')    
     if(toggle.dataset["status"]=="light"){
@@ -40,6 +42,9 @@ toggle.addEventListener("click",e=>{
     }
     
 })
+
+
+//changing image according to the theme
 imgChange.addListener(handleImgChange)
 function handleImgChange(e){   
     if(e.matches) {
@@ -63,25 +68,50 @@ function handleImgChange(e){
         }
     }
 }
+
+
+//adding listItem
 todoAdd.addEventListener('click',e=>{    
    e.preventDefault()
    if(!todoInput.value) return    
    let toggleStatus=toggle.dataset["status"]   
    creatingTodoItem(todoList,toggleStatus)
 })
+
+
+// check and delete
 todoList.addEventListener('click',e=>{
     if(!e.target.closest('button')) return
     if(e.target.closest('button.check')){
         let checkBtn=e.target.closest('button.check')
-        checkBtn.parentElement.classList.add('completed')        
-    }else if(e.target.closest('button.delete')){
+        checkBtn.parentElement.dataset["status"]="completed"
+        // checkBtn.parentElement.classList.add('completed')        
+    }else if(e.target.closest('button.delete')){        
         let closeBtn=e.target.closest('button.delete')
-        closeBtn.parentElement.classList.add('remove')         
+        closeBtn.parentElement.classList.add('remove')  
     }     
 })
+
+
+//filtering
+filter.addEventListener("click",e=>{
+    if(!e.target.closest(".btn-filter")) return
+    if(todoList.childElementCount==0) return    
+    if(e.target==filter.querySelector(".btn-filter.active")){
+        console.log("active")
+    }
+    if(e.target==filter.querySelector(".btn-filter.all")){
+        console.log("all")
+    }
+    if(e.target==filter.querySelector(".btn-filter.completed")){
+        console.log("completed")
+}
+})
+
 function creatingTodoItem(todoList,toggleStatus){
     const itemContent=document.createTextNode(todoInput.value)
     const todoItem=document.createElement("div")
+    todoItem.dataset["status"]="active"
     todoItem.classList.add("todo-item")
     const check=document.createElement("button")
     check.classList.add("check","circle",toggleStatus)
@@ -98,6 +128,8 @@ function creatingTodoItem(todoList,toggleStatus){
     todoList.appendChild(todoItem)
     todoInput.value=""
 }
+
+
 function classToggle(target,newClass,oldClass){
     target.classList.add(newClass)
     target.classList.remove(oldClass)

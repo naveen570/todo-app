@@ -152,14 +152,14 @@ form{
 .check:hover .check-icon{
     opacity: 1; 
 }
-.completed .todo-item-content{
+div[data-status=completed] .todo-item-content{
     color:var(--Dark-Grayish-Blue);
     text-decoration: line-through;
 }
-.completed .check{
+div[data-status=completed] .check{
     background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
 }
-.completed .check-icon{
+div[data-status=completed] .check-icon{
     opacity: 1;
 }
 .remove{
