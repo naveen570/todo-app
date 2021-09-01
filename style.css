@@ -80,13 +80,14 @@ form{
     height: 1.7rem;
     width:1.7rem;
     border-radius: 50%;
-    border:0.2px solid var(--Light-Grayish-Blue);
+    border:0.2px solid var(--Very-Dark-Grayish-Blue);
     cursor: pointer;
 }
 .todo-add{    
     margin-left:1rem;    
     background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
     color: white;  
+    border: 0; 
 }
 .todo-add:hover{
     --Bright-Blue: hsl(220, 98%, 55%);
@@ -98,29 +99,24 @@ form{
     font-size: 1.125rem;    
     padding: 0.8rem;
     font-family: 'Josefin Sans', sans-serif; 
+    background-color: transparent;
     /* background-color: var(--Very-Dark-Blue); */
 }
 .todo-input:focus{
     outline: none;
 }
 .todo-list{
-    background-color: white;    
+    background-color: var(--Very-Light-Gray);   
     border-radius: 0.3rem;
     margin-bottom: 1.5rem;
-}
-.todo-list .msg{
-    padding:2rem;
-    font-size: 1.125rem;
-    color: var(--Very-Dark-Grayish-Blue);
-    text-align: center;
 }
 .todo-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    padding:0 1rem;
-    border-bottom: 0.8px solid var(--Very-Light-Grayish-Blue);
+    padding:0.5rem 1rem;
+    border-bottom: 0.1rem solid var(--Very-Dark-Grayish-Blue);
 }
 .todo-item li{
     flex-grow:1;
@@ -131,29 +127,35 @@ form{
     cursor: pointer;
     height: 1.1rem;
     width: 1.1rem;
-    opacity: 0;
+    opacity: 1;
     /* background-color: blanchedalmond; */
 }
 .check{
-    opacity: 0;
-    background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
+   background-color: var(--Very-Light-Gray);
+   display: flex;
+   justify-content: center;
+   align-items: center;    
 }
 .check:hover{
-    opacity: 1;
+    background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
 }
-.check img{
-    /* opacity: 1; */
-    height: 1.5rem;
-    width: 1.5rem;   
+.check-icon{   
+    height: 0.75rem;
+    width: 0.875rem;
+    max-width: 100%;
+    opacity: 0;
 }
-.todo-item:hover .delete{
-    opacity: 1;
+.check:hover .check-icon{
+    opacity: 1; 
 }
 .completed .todo-item-content{
-    color:var(--Light-Grayish-Blue);
+    color:var(--Dark-Grayish-Blue);
     text-decoration: line-through;
 }
 .completed .check{
+    background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
+}
+.completed .check-icon{
     opacity: 1;
 }
 .remove{
@@ -163,22 +165,32 @@ form{
     text-align: center;
     padding: 1rem 0;
     background-color: white;    
-    border-radius: 00.3rem;
+    border-radius: 00.3rem;    
 }
-.todo-add,.todo-list,.filter{
+form,.todo-list,.filter{
     box-shadow: 0 0 0.3rem rgba(0,0,0,0.7);
 }
 .btn-filter{
     text-transform: capitalize;  
     cursor: pointer; 
+    font-size: 1rem;    
+    color:var(--Very-Dark-Desaturated-Blue)
 }
 .btn-filter + .btn-filter{
     margin-left: 1rem;
 }
-.btn-filter:focus{
-    color: var(--Bright-Blue);
+.filter.dark .btn-filter{
+    color:var(--Very-Light-Gray);
 }
 
+.dark{
+    background-color: var(--Very-Dark-Desaturated-Blue);
+    color:var(--Very-Light-Gray);
+}
+.light{
+    background-color: var(--Very-Light-Gray);
+    color: var(--Very-Dark-Desaturated-Blue);
+}
 
 @media(min-width:376px){
 body{
