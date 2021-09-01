@@ -12,7 +12,7 @@
 
   <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
   <style>
-    .attribution { font-size: 11px; text-align: center; }
+    .attribution { font-size: 11px; text-align: center; margin-top: rem; }
     .attribution a { color: hsl(228, 45%, 44%); }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -22,9 +22,9 @@
   <main class="todo">
     <div class="header">
       <h1>Todo</h1>
-        <img src="./images/icon-moon.svg" alt="" class="toggle">
+        <img src="./images/icon-moon.svg" data-status="light" alt="" class="toggle">
     </div>
-      <form >
+      <form class="todo-enter" >
         <button class="todo-add circle" type="submit"><i class="fas fa-plus"></i></button>
         <input type="text" class="todo-input" placeholder="Create a new todo">
       </form>
