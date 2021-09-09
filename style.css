@@ -3,7 +3,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    transition: background-color 0.2s linear;
+    transition: background-color 0.2s ease-in-out;
 }
 :root{
     --Bright-Blue: hsl(220, 98%, 61%);
@@ -23,15 +23,19 @@
 }
 img{
     max-width: 100%;
-    display: block;
+    display: block;    
 }
-body{
+.container{
     font-family: 'Josefin Sans', sans-serif;
     font-size: 1.125rem;
     min-height: 100vh;
     background-image: url("./images/bg-mobile-light.jpg");
     background-color: var(--Light-Grayish-Blue-hover);
     background-repeat: no-repeat;    
+}
+.container.dark{
+    background-image: url("./images/bg-mobile-dark.jpg");
+    background-color: var(--Very-Dark-Desaturated-Blue);
 }
 button,a{
     border:0;
@@ -54,16 +58,16 @@ button,a{
     color:white;    
 }
 .header h1{
-    font-size: 1.5rem;
+    font-size: clamp(1.5rem, 2.5vw, 3rem); 
     letter-spacing: 0.5rem;
     text-transform: uppercase;
 }
 .header .toggle{
-    height: 1.5rem;
-    width: 1.5rem;
+    height: clamp(1.5rem, 2.5vw, 2rem);
+    width: clamp(1.5rem, 2.5vw, 2rem);
     cursor: pointer;
 }
-form{
+.todo-enter{
     margin-bottom: 1.5rem;    
     display: flex;
     justify-content: space-between;
@@ -72,9 +76,11 @@ form{
     border-radius: 0.3rem;
     /* padding: 0.2rem 1rem; */
 }
+.dark .todo-enter{
+    background-color: var(--Very-Dark-Desaturated-Blue);    
+}
 .todo-add,.todo-input{
-    border:0;
-      
+    border:0;      
 }
 .circle{
     height: 1.7rem;
@@ -96,7 +102,7 @@ form{
 .todo-input{
     flex:1;
     border-radius: 0.3rem;
-    font-size: 1.125rem;    
+    font-size: clamp(1.125rem, 2.3vw, 1.2rem);    
     padding: 1rem;
     font-family: 'Josefin Sans', sans-serif; 
     background-color: transparent;
@@ -107,17 +113,29 @@ form{
 .todo-input:focus{
     outline: none;
 }
+.dark .todo-input{
+    color: var(--Very-Light-Gray);
+}
+.dark .todo-body,.dark .todo-enter{
+    border-radius: 0.3rem;
+    box-shadow: 0 0.5rem 0.6rem 0.3rem rgba(0, 0, 0, 0.4);
+}
 .todo-list{
     background-color: var(--Very-Light-Gray);   
     border-radius: 0.3rem;
-    margin-bottom: 1.5rem;
+    /* margin-bottom: 1.5rem; */
+}
+.dark .todo-list{
+    background-color: var(--Very-Dark-Desaturated-Blue);
+    color:var(--Very-Light-Gray);
 }
 .todo-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
     list-style: none;
-    padding:0.5rem 1rem;    
+    padding:0.5rem 1rem; 
+    font-size: clamp(1.125rem, 2.3vw, 1.2rem);     
 }
 .todo-item + .todo-item{
     border-top: 1px solid var(--Dark-Grayish-Blue);
@@ -152,58 +170,77 @@ form{
 .check:hover .check-icon{
     opacity: 1; 
 }
-div[data-status=completed] .todo-item-content{
+.dark .check{
+    background-color: var(--Very-Dark-Desaturated-Blue);
+    color:var(--Very-Light-Gray);
+}
+.todo-item-content{
+    cursor: pointer;
+}
+.completed .todo-item-content{
     color:var(--Dark-Grayish-Blue);
     text-decoration: line-through;
 }
-div[data-status=completed] .check{
+.completed .check{
     background-image: linear-gradient(-55deg,var(--Bright-Blue),var(--purple));
 }
-div[data-status=completed] .check-icon{
+.completed .check-icon{
     opacity: 1;
 }
-.remove{
-    display: none;
+.check img,.delete img{
+    pointer-events: none;
 }
 .filter{   
     text-align: center;
     padding: 1rem 0;
     background-color: white;    
+    border-top: 1px solid var(--Dark-Grayish-Blue);
     border-radius: 00.3rem;    
+    color: var(--Very-Dark-Grayish-Blue);    
 }
-/* form,.todo-list,.filter{
-    box-shadow: 0 0 0.3rem rgba(0,0,0,0.7);
-} */
+.dark .filter{
+    background-color: var(--Very-Dark-Desaturated-Blue);
+    color:var(--Very-Light-Gray);
+}
+
 .btn-filter{
     text-transform: capitalize;  
     font-family: 'Josefin Sans', sans-serif; 
     cursor: pointer; 
-    font-size: 1rem;    
+    font-size: clamp(1rem, 2.3vw, 1.15rem);     
     font-weight: 600;
     color:var(--Dark-Grayish-Blue)
 }
 .btn-filter + .btn-filter{
     margin-left: 1rem;
 }
-.filter.dark .btn-filter{
+.dark .btn-filter{
     color:var(--Very-Dark-Grayish-Blue);
 }
-.filter.light .btn-filter{
-    color: var(--Dark-Grayish-Blue);
-}
-.dark{
-    background-color: var(--Very-Dark-Desaturated-Blue);
-    color:var(--Very-Light-Gray);
-}
-.light{
-    background-color: var(--Very-Light-Gray);
-    color: var(--Very-Dark-Grayish-Blue);
-}
-.chosen{
+.btn-filter.chosen{
     color:var(--Bright-Blue)
 }
+.remove{
+    /* background-color: rebeccapurple; */
+    animation: jump 0.3s ease-in-out  forwards;
+   
+}
 @media(min-width:376px){
-body{
+.container{
     background-image: url("./images/bg-desktop-light.jpg");
-}}    
+}
+.container.dark{
+    background-image: url("./images/bg-desktop-dark.jpg");
+}
+}    
+@keyframes jump {
+    from{
+        transform:translatex(0px) scale(1);
+          opacity:1;
+      }
+      to{
+        transform:translatex(100px) scale(0.8);
+        opacity:0;
+      }
+}
 
