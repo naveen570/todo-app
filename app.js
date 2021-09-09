@@ -89,7 +89,12 @@ todoList.addEventListener('click',e=>{
         // checkBtn.parentElement.classList.add('completed')        
     }else if(e.target.closest('button.delete')){        
         let closeBtn=e.target.closest('button.delete')
-        closeBtn.parentElement.classList.add('remove')  
+        // closeBtn.parentElement.classList.add('remove')
+        let items=Array.from(todoList.children)
+        const targetItem= closeBtn.parentElement
+        items.indexOf(targetItem)
+        items=items.filter(item=>item!=targetItem)
+        
     }     
 })
 
