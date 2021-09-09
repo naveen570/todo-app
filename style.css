@@ -107,16 +107,13 @@ form{
 .todo-input:focus{
     outline: none;
 }
-<<<<<<< HEAD
 .dark .todo-input{
     color: var(--Very-Light-Gray);
 }
-.todo-body, .todo-enter{
+.dark .todo-body,.dark .todo-enter{
     border-radius: 0.3rem;
     box-shadow: 0 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.4);
 }
-=======
->>>>>>> parent of f73bddd (completed-80%)
 .todo-list{
     background-color: var(--Very-Light-Gray);   
     border-radius: 0.3rem;
