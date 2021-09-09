@@ -116,9 +116,9 @@ button,a{
 .dark .todo-input{
     color: var(--Very-Light-Gray);
 }
-.dark .todo-body,.dark .todo-enter{
+.todo-body, .todo-enter{
     border-radius: 0.3rem;
-    box-shadow: 0 0.5rem 0.6rem 0.3rem rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0.2rem 0.5rem 0.3rem rgba(0, 0, 0, 0.4);
 }
 .todo-list{
     background-color: var(--Very-Light-Gray);   
