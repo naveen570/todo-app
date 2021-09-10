@@ -24,19 +24,23 @@
       <h1>Todo</h1>
         <img src="./images/icon-moon.svg" data-status="light" alt="" class="toggle">
     </div>
-      <form class="todo-enter" >
+    <form class="todo-enter" >
         <button class="todo-add circle" type="submit"><i class="fas fa-plus"></i></button>
         <input type="text" class="todo-input" placeholder="Create a new todo">
-      </form>
-      <div class="todo-body">
+    </form>
+    <div class="todo-body">
         <ul class="todo-list">         
         </ul>
-        <div class="filter">
-          <button class="btn-filter all chosen">all</button>
-          <button class="btn-filter active">active</button>
-          <button class="btn-filter completed">completed</button>
+        <div class="todo-footer">
+          <p class="todo-item-count">0 items left</p>
+          <div class="filter">
+            <button class="btn btn-filter all chosen">all</button>
+            <button class="btn btn-filter active">active</button>
+            <button class="btn btn-filter completed">completed</button>
+          </div>
+          <button class="btn todo-clear-all">Clear</button>
         </div>
-      </div>      
+    </div>              
   </main>
   <div class="attribution">
     Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
