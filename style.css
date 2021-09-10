@@ -207,7 +207,7 @@ a {
   padding: 1rem;
   background-color: white;
   border-top: 1px solid var(--Dark-Grayish-Blue);
-  font-size: clamp(1rem, 2.3vw, 1.15rem);
+  font-size: clamp(0.8rem, 2vw, 1.15rem);
 }
 .todo-item-count {
   color: var(--Dark-Grayish-Blue);
@@ -224,7 +224,7 @@ a {
   text-transform: capitalize;
   font-family: "Josefin Sans", sans-serif;
   cursor: pointer;
-  font-size: clamp(1rem, 2.3vw, 1.15rem);
+  font-size: clamp(0.8rem, 2vw, 1.15rem);
   color: var(--Dark-Grayish-Blue);
 }
 .btn-filter {

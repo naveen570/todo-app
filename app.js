@@ -30,7 +30,6 @@ todoAdd.addEventListener("click", (e) => {
 // check and delete
 todoList.addEventListener("click", (e) => {
   const targetItem = e.target
-  if (!targetItem.closest("button")) return
   if (
     targetItem.classList.contains("check") ||
     targetItem.classList.contains("todo-item-content")
