@@ -8,6 +8,7 @@ const container = document.querySelector(".container")
 const count = document.querySelector(".todo-item-count")
 const clearAll = document.querySelector(".todo-clear-all")
 const todoFooter = document.querySelector(".todo-footer")
+document.addEventListener("DOMContentLoaded", getLocalTodoItems)
 //light to dark them, vice versa
 toggle.addEventListener("click", (e) => {
   container.classList.toggle("dark")
@@ -42,12 +43,8 @@ todoList.addEventListener("click", (e) => {
       targetItem.parentElement.classList.remove("completed")
     }
   } else if (targetItem.classList.contains("delete")) {
-    const p = targetItem.parentElement
-    targetItem.parentElement.classList.add("remove")
-    targetItem.parentElement.addEventListener("animationend", () => {
-      targetItem.parentElement.remove()
-      ItemCount(".todo-item")
-    })
+    const item = targetItem.parentElement
+    removeItem(item, ".todo-item")
   }
 })
 
@@ -82,22 +79,23 @@ todoFooter.addEventListener("click", (e) => {
     } else if (targetBtn.classList.contains("todo-clear-all")) {
       const chosenFilter = filter.querySelector(".chosen")
       if (chosenFilter.classList.contains("all")) {
-        removeItem(item)
+        removeItem(item, ".todo-item")
       } else if (chosenFilter.classList.contains("active")) {
         if (item.classList.contains("active")) {
-          removeItem(item)
+          removeItem(item, ".active")
         }
       } else if (chosenFilter.classList.contains("completed")) {
         if (item.classList.contains("completed")) {
-          removeItem(item)
+          removeItem(item, ".completed")
         }
       }
     }
   })
 })
 
-function creatingTodoItem(todoList, toggleStatus) {
+function creatingTodoItem(todoList) {
   const itemContent = document.createTextNode(todoInput.value)
+  saveInLocal(todoInput.value)
   const todoItem = document.createElement("div")
   todoItem.classList.add("active")
   // todoItem.dataset["status"]="active"
@@ -127,10 +125,64 @@ function ItemCount(select) {
   const Targetitems = todoList.querySelectorAll(select)
   count.textContent = Targetitems.length + " items left"
 }
-function removeItem(targetItem) {
+function removeItem(targetItem, selector) {
   targetItem.classList.add("remove")
+  removeLocalTodoItems(targetItem)
   targetItem.addEventListener("animationend", () => {
     targetItem.remove()
-    ItemCount(".completed")
+    ItemCount(selector)
   })
+}
+function saveInLocal(todoItem) {
+  let todos
+  if (localStorage.getItem("todos") === null) {
+    todos = []
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"))
+  }
+  todos.push(todoItem)
+  console.log(todos)
+  localStorage.setItem("todos", JSON.stringify(todos))
+}
+function getLocalTodoItems() {
+  let todos
+  if (localStorage.getItem("todos") === null) {
+    todos = []
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"))
+  }
+  todos.forEach((todo) => {
+    const itemContent = document.createTextNode(todo)
+    const todoItem = document.createElement("div")
+    todoItem.classList.add("active")
+    // todoItem.dataset["status"]="active"
+    todoItem.classList.add("todo-item")
+    const check = document.createElement("button")
+    check.classList.add("check", "circle")
+    check.innerHTML =
+      '<img src="./images/icon-check.svg" class="check-icon" alt="">'
+    todoItem.appendChild(check)
+    const listItem = document.createElement("li")
+    listItem.classList.add("todo-item-content")
+    listItem.appendChild(itemContent)
+    todoItem.appendChild(listItem)
+    const close = document.createElement("button")
+    close.innerHTML = '<img src="./images/icon-cross.svg" alt="">'
+    close.classList.add("delete")
+    todoItem.appendChild(close)
+    todoList.appendChild(todoItem)
+    todoInput.value = ""
+    ItemCount(".todo-item")
+  })
+}
+function removeLocalTodoItems(todoItem) {
+  let todos
+  if (localStorage.getItem("todos") === null) {
+    todos = []
+  } else {
+    todos = JSON.parse(localStorage.getItem("todos"))
+  }
+  let todoIndex = todoItem.children[1].innerHTML
+  todos.splice(todos.indexOf(todoIndex), 1)
+  localStorage.setItem("todos", JSON.stringify(todos))
 }
